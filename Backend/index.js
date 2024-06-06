@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const dataRoutes = require('./Routes/Dashboard');
+const cors = require ('cors');
 
 // Load environment variables
 dotenv.config();
@@ -9,6 +10,16 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
+
+const corsOptions = {
+  origin: ['http://localhost:3000'],
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+
 
 // Middleware to parse JSON bodies
 app.use(express.json());
