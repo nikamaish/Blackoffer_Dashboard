@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const dataRoutes = require('./Routes/Dashboard');
 
 // Load environment variables
 dotenv.config();
@@ -11,6 +12,9 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+
+// Define routes
+app.use('/api/data', dataRoutes);
 
 // MongoDB connection
 mongoose.connect(MONGO_URI, {
